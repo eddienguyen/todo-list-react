@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import './TodoItem.scss';
 
 class TodoItem extends Component {
@@ -20,10 +21,18 @@ class TodoItem extends Component {
                     <label>{item.title}</label>
                     <button className="destroy" onClick={this.props.onClearItem}></button>
                 </div>
-                <input className="edit" value={item.title} onChange={this.onEdit} />    
+                <input className="edit" value={item.title} onChange={this.onEdit} />
             </li>
         );
     }
+}
+
+TodoItem.propTypes = {
+    item: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        isCompleted: PropTypes.bool.isRequired,
+    }),
+    onItemClick: PropTypes.func
 }
 
 export default TodoItem;
